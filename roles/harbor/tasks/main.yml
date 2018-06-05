@@ -1,0 +1,26 @@
+- include: config.yml
+
+#- name: Restart docker service
+#  service:
+#    name: docker
+#    state: restarted
+#    enabled: yes
+
+- name: Pull images form src_registry
+  docker_image:
+    name: "{{ src_registry.url }}/{{ item }}"
+  with_items: "{{ images }}"
+
+- name: Login Docker registry
+  docker_login:
+   registry: "{{ dest_registry.url }}"
+   username: "{{ dest_registry.username }}"
+   password: "{{ dest_registry.password }}"
+   reauthorize: yes
+
+- name: Tag and push to local registry
+  docker_image:
+    name: "{{ src_registry.url }}/{{ item }}"
+    repository: "{{ dest_registry.url }}/library/{{ item }}"
+    push: yes
+  with_items: "{{ images }}"

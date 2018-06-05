@@ -1,0 +1,15 @@
+src_registry:
+   url: 192.168.1.100:5000 
+   username: test
+   password: test
+dest_registry:
+   url: 10.21.21.247:5000
+   username: admin
+   password: Harbor12345
+images:
+  - library/nginx:latest
+  - coredns/coredns:latest
+registry_mirrors:
+  - https://hfour12o.mirror.aliyuncs.com
+
+

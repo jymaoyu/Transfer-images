@@ -1,0 +1,4 @@
+{
+  "insecure-registries":["http://{{src_registry.url}}","http://{{dest_registry.url}}"],
+  "registry-mirrors":[{% for registry_mirror in registry_mirrors %}{% if loop.index == 1 %}"{{registry_mirror}}"{% else %},"{{registry_mirror}}"{% endif %}{% endfor %}]
+}

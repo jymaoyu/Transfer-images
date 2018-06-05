@@ -1,0 +1,5 @@
+---
+# defaults file for docker
+insecure_registries: []
+registry_mirrors: []
+
